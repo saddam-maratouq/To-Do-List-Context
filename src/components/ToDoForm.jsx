@@ -1,6 +1,7 @@
-import React, { useState,useContext } from 'react' 
+import  { useContext } from 'react' 
 
 import {listCxt} from '../context/ToDoCxt' 
+import useToDO from '../hook/useToDO'
 
 
 
@@ -8,7 +9,7 @@ import {listCxt} from '../context/ToDoCxt'
 
 export const ToDoForm = () => { 
 
-    const [todo,setTodo] = useState('')   
+    const { todo , setTodo , getItem  , setItem  }  = useToDO() 
 
     const  { addToDo }  = useContext(listCxt) 
 
@@ -26,12 +27,16 @@ export const ToDoForm = () => {
         e.preventDefault(); 
 
         const NewTask = { 
-            
+
             id : Math.round(Math.random() *1000),   
             todo , 
         } 
 
         addToDo(NewTask) ;  
+
+        setItem(); 
+        getItem();
+       console.log(getItem())
 
         console.log(NewTask);
     } 
@@ -44,9 +49,9 @@ export const ToDoForm = () => {
 
             <form onSubmit={submitHandler} >
                 <input type="text" placeholder='Task ...' value={todo} onChange={taskHandler}  />
+            <button type='submit' > Add Task </button> 
             </form>
       
-            <button type='submit' > Add Task </button> 
         </div>
     )
 }
