@@ -10,7 +10,7 @@ const initialState = {
     Tasks : [
         {id : 1  , todo : ' cooking'} , 
         {id : 2  , todo : ' cooding'} , 
-``
+
     ] 
     
 
