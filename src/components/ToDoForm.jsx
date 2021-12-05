@@ -1,21 +1,27 @@
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react'
-import  { useContext } from 'react' 
 
+import  { useContext } from 'react' 
 import {listCxt} from '../context/ToDoCxt' 
-import useToDO from '../hook/useToDO'
-import { v4 as uuidv4 } from 'uuid';
+import {useLocalStorage} from '../hook/useLocalStorage';
 
 
 export const ToDoForm = () => { 
 
-    const { todo , setTodo , getItem  , setItem  }  = useToDO() 
+    const { Tasks } = useContext(listCxt) 
+    // console.log(Tasks); 
 
-    const  { addToDo }  = useContext(listCxt) 
+    const mission =  Tasks.map(task=> task.todo) 
+
+    const  { addToDo }  = useContext(listCxt)  
+
+    const [ todo , setTodo ]  = useLocalStorage('order', mission) 
+
+
+
 
 
     const taskHandler = (e) => { 
         const task = e.target.value
-        setTodo(task) 
+        setTodo(task)  
     } 
 
     // console.log(todo); 
@@ -27,15 +33,13 @@ export const ToDoForm = () => {
 
         const NewTask = { 
 
-             id :  uuidv4(),          //  Math.round(Math.random() *1000),   
+             id : Math.round(Math.random() *1000),           //  Math.round(Math.random() *1000),   
             todo , 
         } 
 
-        addToDo(NewTask) ;  
+       addToDo(NewTask)   ;  
 
-        getItem();
-        setItem(); 
-       console.log(getItem())
+    
 
         console.log(NewTask);
     } 
