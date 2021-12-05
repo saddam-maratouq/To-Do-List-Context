@@ -4,20 +4,23 @@ import {listCxt} from '../context/ToDoCxt'
 
 
 
-const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
 
 export const ToDoForm = () => { 
+
+
+
+const LOCAL_STORAGE_KEY = "mission";
 
     const { Tasks } = useContext(listCxt) 
     // console.log(Tasks); 
 
     // const mission =  Tasks.map(task=> task.todo) 
 
+    
+    const [ todo , setTodo ]  = useState([{}]) 
+    
     const  { addToDo }  = useContext(listCxt)  
-
-    const [ todo , setTodo ]  = useState([]) 
-
 
 
 
