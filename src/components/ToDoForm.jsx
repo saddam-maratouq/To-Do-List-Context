@@ -1,10 +1,9 @@
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react'
 import  { useContext } from 'react' 
 
 import {listCxt} from '../context/ToDoCxt' 
 import useToDO from '../hook/useToDO'
-
-
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const ToDoForm = () => { 
@@ -15,7 +14,7 @@ export const ToDoForm = () => {
 
 
     const taskHandler = (e) => { 
-        const task =e.target.value
+        const task = e.target.value
         setTodo(task) 
     } 
 
@@ -28,14 +27,14 @@ export const ToDoForm = () => {
 
         const NewTask = { 
 
-            id : Math.round(Math.random() *1000),   
+             id :  uuidv4(),          //  Math.round(Math.random() *1000),   
             todo , 
         } 
 
         addToDo(NewTask) ;  
 
-        setItem(); 
         getItem();
+        setItem(); 
        console.log(getItem())
 
         console.log(NewTask);

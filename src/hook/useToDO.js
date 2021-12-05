@@ -1,6 +1,8 @@
 
 
-import {useState , useEffect} from 'react' 
+import {useState , useEffect,useContext} from 'react' 
+
+import {listCxt} from '../context/ToDoCxt'
 
 
 const  LOCAL_STOREGE_KEY = 'react-todos'
@@ -8,6 +10,14 @@ const  LOCAL_STOREGE_KEY = 'react-todos'
 const  useToDO = () =>  { 
  
     const [todo,setTodo] = useState([])   
+
+    const { Tasks } = useContext(listCxt)
+
+
+    const todo = Tasks.map( task =>  task.todo  )  
+
+
+
 
 
 
@@ -19,7 +29,9 @@ const  useToDO = () =>  {
    
     const getItem = () => {
 
-        const StorgeItem =  JSON.parse(localStorage.getItem( LOCAL_STOREGE_KEY) ) 
+        const StorgeItem =  JSON.parse(localStorage.getItem( LOCAL_STOREGE_KEY)) 
+
+        console.log(StorgeItem);
     
         if (StorgeItem) {
             
@@ -27,6 +39,7 @@ const  useToDO = () =>  {
         }
     }
  
+
 
     useEffect(() => {
        

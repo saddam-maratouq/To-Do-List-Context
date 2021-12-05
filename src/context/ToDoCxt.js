@@ -7,7 +7,7 @@ import {Reducer} from './Reducer'
 
 const initialState = { 
 
-    Tasks : []
+    Tasks : {id : 1 , todo : 'cooking'} 
     
 
 }
